@@ -24,7 +24,8 @@
 # === Examples
 #
 #  class { lightdm:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#    autologin_user = username,
+#    autologin_user_timeout = delay,
 #  }
 #
 # === Authors
@@ -36,12 +37,11 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class lightdm (
-  $greeter_setup_script = $lightdm::params::greeter_setup_script,
-  $session_setup_script = $lightdm::params::session_setup_script,
-  $display_setup_script = $lightdm::params::display_setup_script,
-  $autologin_user       = $lightdm::params::autologin_user,
-  
-) inherits lightdm::params {
+  $greeter_hide_users   = false,
+  $autologin_user       = undef,
+  $autologin_guest      = false,
+  $user_session         = undef,
+) {
 
   class {
     'lightdm::install': ;
