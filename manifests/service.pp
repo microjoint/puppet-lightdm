@@ -1,4 +1,7 @@
-class lightdm::service {
+#
+class lightdm::service inherits lightdm (
+  refresh
+) {
 
   service{ 'lightdm':
     ensure     => 'running',
